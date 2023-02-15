@@ -34,22 +34,18 @@ export class UserController {
     public signup = async (req: Request, res: Response) => {
         try {
             const input: SignupInput = {
-                id: req.body.id,
+                // id: req.body.id,
                 name: req.body.name,
                 email: req.body.email,
                 password: req.body.password
-            }
-            
+            }            
             const output = await this.userBusiness.signup(input)
-    
             res.status(201).send(output)
         } catch (error) {
-            console.log(error)
-    
+            console.log(error)    
             if (req.statusCode === 200) {
                 res.status(500)
-            }
-    
+            }    
             if (error instanceof Error) {
                 res.send(error.message)
             } else {
@@ -64,9 +60,7 @@ export class UserController {
                 email: req.body.email,
                 password: req.body.password
             }
-
             const output = await this.userBusiness.login(input)
-    
             res.status(200).send(output)
         } catch (error) {
             console.log(error)
